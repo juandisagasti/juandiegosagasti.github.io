@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Juan Diego Sagasti</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; background: #0a0a0a; color: #ffffff; }
+        header { background: linear-gradient(135deg, #1a1410 0%, #2a2015 100%); border-bottom: 2px solid #d4af37; padding: 1.2rem 2rem; }
+        .header-content { max-width: 1400px; margin: 0 auto; }
+        .back-link { color: #d4af37; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .back-link:hover { color: #f0d890; }
+        main { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
+        .section-title { font-size: 32px; font-weight: 700; margin-bottom: 2.5rem; padding-bottom: 1.2rem; border-bottom: 2px solid #d4af37; background: linear-gradient(135deg, #f0d890 0%, #d4af37 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .contact-card { background: linear-gradient(135deg, #1a1410 0%, #2a2015 100%); border: 2px solid #d4af37; border-radius: 8px; padding: 2.5rem; max-width: 550px; position: relative; }
+        .contact-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, #d4af37, #f0d890); }
+        .contact-item { margin-bottom: 2.2rem; }
+        .contact-item:last-child { margin-bottom: 0; }
+        .contact-label { font-size: 11px; color: #b8960a; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.6rem; font-weight: 600; }
+        .contact-value { font-size: 16px; color: #ffffff; font-weight: 500; }
+        .contact-value a { color: #d4af37; text-decoration: none; border-bottom: 2px solid #d4af37; transition: all 0.3s ease; font-weight: 600; }
+        .contact-value a:hover { color: #f0d890; border-bottom-color: #f0d890; }
+        .loading { text-align: center; padding: 2rem; color: #d4af37; }
+        .placeholder { background: linear-gradient(135deg, #1a1410 0%, #2a2015 100%); border: 2px dashed #d4af37; padding: 2.5rem; border-radius: 8px; text-align: center; color: #b8960a; }
+        footer { background: linear-gradient(135deg, #1a1410 0%, #2a2015 100%); border-top: 2px solid #d4af37; padding: 3rem 2rem; text-align: center; font-size: 13px; color: #bbb; margin-top: 4rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <a href="index.html" class="back-link">← Volver</a>
+    </div>
+</header>
+
+<main>
+    <h1 class="section-title">CONTACTO</h1>
+    <div id="content" class="loading">Cargando contenido...</div>
+</main>
+
+<footer>
+    <p>Juan Diego Sagasti © 2024</p>
+</footer>
+
+<script>
+const SHEET_ID = '1rky7rvDDyipJCSNHLsLNsw8RCNQLgz_VoFfSwE1uvns';
+const API_KEY = 'AIzaSyDx3U-WVY1a5DzxfIKCzvJOlcj1YNahQ_o';
+
+async function loadData() {
+    try {
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/CONTACTO?key=${API_KEY}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        if (data.values && data.values.length > 1) {
+            renderContact(data.values.slice(1).filter(row => row[0]));
+        } else {
+            document.getElementById('content').innerHTML = '<div class="placeholder">Sin contacto</div>';
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('content').innerHTML = '<div class="placeholder" style="color: #ff6b6b;">Error al cargar</div>';
+    }
+}
+
+function renderContact(rows) {
+    const html = '<div class="contact-card">' + rows.map(row => {
+        const label = row[0] || '';
+        const value = row[1] || '';
+        
+        let displayValue = value;
+        if (label === 'Email') {
+            displayValue = `<a href="mailto:${value}">${value}</a>`;
+        } else if (label === 'Instagram') {
+            displayValue = `<a href="https://instagram.com/${value.replace('@', '')}" target="_blank">${value}</a>`;
+        } else if (label === 'Teléfono') {
+            displayValue = `<a href="tel:${value}">${value}</a>`;
+        }
+        
+        return `
+            <div class="contact-item">
+                <div class="contact-label">${label}</div>
+                <div class="contact-value">${displayValue}</div>
+            </div>
+        `;
+    }).join('') + '</div>';
+    
+    document.getElementById('content').innerHTML = html;
+}
+
+loadData();
+</script>
+
+</body>
+</html>
