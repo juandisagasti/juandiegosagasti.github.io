@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotos - Juan Diego Sagasti</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; background: #0a0a0a; color: #ffffff; }
+        header { background: linear-gradient(135deg, #1a1410 0%, #2a2015 100%); border-bottom: 2px solid #d4af37; padding: 1.2rem 2rem; }
+        .header-content { max-width: 1400px; margin: 0 auto; }
+        .back-link { color: #d4af37; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .back-link:hover { color: #f0d890; }
+        main { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
+        .section-title { font-size: 32px; font-weight: 700; margin-bottom: 2.5rem; padding-bottom: 1.2rem; border-bottom: 2px solid #d4af37; background: linear-gradient(135deg, #f0d890 0%, #d4af37 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .grid-fotos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+        .foto-item { border-radius: 8px; overflow: hidden; border: 2px solid #d4af37; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2); transition: all 0.3s ease; cursor: pointer; }
+        .foto-item:hover { transform: scale(1.05); box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4); }
+        .foto-item img { width: 100%; height: 250px; object-fit: cover; display: block; }
+        .loading { text-align: center; padding: 2rem; color: #d4af37; }
+        .placeholder { background: linear-gradient(135deg, #1a1410 0%, #2a2015 100%); border: 2px dashed #d4af37; padding: 2.5rem; border-radius: 8px; text-align: center; color: #b8960a; }
+        footer { background: linear-gradient(135deg, #1a1410 0%, #2a2015 100%); border-top: 2px solid #d4af37; padding: 3rem 2rem; text-align: center; font-size: 13px; color: #bbb; margin-top: 4rem; }
+        @media (max-width: 1024px) { .grid-fotos { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 768px) { .grid-fotos { grid-template-columns: repeat(2, 1fr); } }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <a href="0-index.html" class="back-link">← Volver</a>
+    </div>
+</header>
+
+<main>
+    <h1 class="section-title">FOTOS</h1>
+    <div id="content" class="loading">Cargando fotos...</div>
+</main>
+
+<footer>
+    <p>Juan Diego Sagasti © 2024</p>
+</footer>
+
+<script>
+const SHEET_ID = '1rky7rvDDyipJCSNHLsLNsw8RCNQLgz_VoFfSwE1uvns';
+const API_KEY = 'AIzaSyDx3U-WVY1a5DzxfIKCzvJOlcj1YNahQ_o';
+
+async function loadData() {
+    try {
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/FOTOS?key=${API_KEY}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        if (data.values && data.values.length > 1) {
+            const fotos = data.values.slice(1).filter(row => row[0]).map(row => row[0]);
+            renderFotos(fotos);
+        } else {
+            document.getElementById('content').innerHTML = '<div class="placeholder">Sin fotos</div>';
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('content').innerHTML = '<div class="placeholder" style="color: #ff6b6b;">Error al cargar</div>';
+    }
+}
+
+function renderFotos(fotos) {
+    const html = '<div class="grid-fotos">' + fotos.map(link => `
+        <div class="foto-item">
+            <img src="${convertLink(link)}" alt="Foto" onerror="this.parentElement.style.display='none'">
+        </div>
+    `).join('') + '</div>';
+    
+    document.getElementById('content').innerHTML = html;
+}
+
+function convertLink(link) {
+    if (!link) return '';
+    const match = link.match(/\/d\/(.*?)\//);
+    return match ? `https://drive.google.com/uc?export=view&id=${match[1]}` : link;
+}
+
+loadData();
+</script>
+
+</body>
+</html>
