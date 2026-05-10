@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juan Diego Sagasti - Actor, Modelo, Deportista</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; background: #0a0a0a; color: #ffffff; }
+        header { position: sticky; top: 0; background: linear-gradient(135deg, #1a1410 0%, #2a2015 100%); border-bottom: 2px solid #d4af37; z-index: 1000; padding: 1.2rem 2rem; }
+        .header-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: center; }
+        nav { display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; }
+        nav a { background: none; border: none; font-size: 13px; color: #999; cursor: pointer; padding: 0.6rem 0; transition: all 0.3s ease; font-weight: 500; text-decoration: none; }
+        nav a:hover { color: #d4af37; }
+        .hero { background: linear-gradient(135deg, #1a1410 0%, #2a2015 50%, #1f1810 100%); padding: 4rem 2rem; border-bottom: 2px solid #d4af37; }
+        .hero-content { max-width: 1400px; margin: 0 auto; }
+        .hero-title { text-align: center; margin-bottom: 1rem; }
+        .hero-title h1 { font-size: 52px; font-weight: 700; margin-bottom: 0.8rem; background: linear-gradient(135deg, #f0d890 0%, #d4af37 50%, #b8960a 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-tagline { font-size: 18px; color: #d4af37; margin-bottom: 3rem; font-weight: 500; text-align: center; }
+        .hero-images { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem; }
+        .hero-image img { width: 100%; border-radius: 8px; box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3); border: 2px solid #d4af37; object-fit: cover; aspect-ratio: 3/4; }
+        .hero-meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; background: linear-gradient(135deg, rgba(26, 20, 16, 0.8) 0%, rgba(42, 32, 21, 0.8) 100%); padding: 2rem; border-radius: 8px; border: 2px solid #d4af37; }
+        .meta-item { display: flex; flex-direction: column; gap: 0.3rem; }
+        .meta-label { font-size: 10px; color: #b8960a; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+        .meta-value { font-size: 14px; color: #f0d890; font-weight: 500; }
+        main { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
+        .loading { text-align: center; padding: 2rem; color: #d4af37; }
+        footer { background: linear-gradient(135deg, #1a1410 0%, #2a2015 100%); border-top: 2px solid #d4af37; padding: 3rem 2rem; text-align: center; font-size: 13px; color: #bbb; margin-top: 4rem; }
+        @media (max-width: 1024px) { .hero-meta { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) {
+            .hero-images { grid-template-columns: 1fr; }
+            .hero-title h1 { font-size: 36px; }
+            nav { gap: 1rem; }
+            .hero-meta { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <nav id="nav-menu"></nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-title">
+            <h1 id="hero-name">Cargando...</h1>
+            <p class="hero-tagline" id="hero-tagline"></p>
+        </div>
+        <div class="hero-images">
+            <div class="hero-image">
+                <img id="hero-image-1" src="" alt="Foto 1" style="display:none;">
+            </div>
+            <div class="hero-image">
+                <img id="hero-image-2" src="" alt="Foto 2" style="display:none;">
+            </div>
+        </div>
+        <div class="hero-meta" id="hero-meta"></div>
+    </div>
+</section>
+
+<main id="main-content">
+    <div class="loading">Cargando contenido...</div>
+</main>
+
+<footer>
+    <p>Juan Diego Sagasti © 2024</p>
+</footer>
+
+<script>
+google.charts.load('current', {'packages':['corechart']});
+
+const SHEET_ID = '1rky7rvDDyipJCSNHLsLNsw8RCNQLgz_VoFfSwE1uvns';
+
+const SECTIONS = [
+    { name: 'FOTOS', file: '1-fotos.html' },
+    { name: 'AUDIOVISUAL', file: '2-audiovisual.html' },
+    { name: 'TEATRO', file: '3-teatro.html' },
+    { name: 'TV', file: '4-tv.html' },
+    { name: 'CRÍTICAS', file: '5-criticas.html' },
+    { name: 'DEPORTES', file: '6-deportes.html' },
+    { name: 'CONTACTO', file: '7-contacto.html' }
+];
+
+function loadData() {
+    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=PRESENTACIÓN`;
+    
+    fetch(url)
+        .then(response => response.text())
+        .then(data => {
+            const jsonData = JSON.parse(data.substring(data.indexOf('{'), data.lastIndexOf('}') + 1));
+            renderHero(jsonData);
+            renderNavigation();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+function renderHero(jsonData) {
+    const config = {};
+    
+    if (jsonData.table && jsonData.table.rows) {
+        jsonData.table.rows.forEach(row => {
+            if (row.c[0] && row.c[1]) {
+                const key = row.c[0].v;
+                const value = row.c[1].v || '';
+                config[key] = value;
+            }
+        });
+    }
+    
+    console.log('Config:', config);
+    
+    document.getElementById('hero-name').textContent = config['Nombre'] || 'Juan Diego Sagasti';
+    document.getElementById('hero-tagline').textContent = config['Tagline'] || 'Actor • Emprendedor • Deportista';
+    
+    if (config['Foto 1']) {
+        const img1 = document.getElementById('hero-image-1');
+        img1.src = convertLink(config['Foto 1']);
+        img1.style.display = 'block';
+    }
+    if (config['Foto 2']) {
+        const img2 = document.getElementById('hero-image-2');
+        img2.src = convertLink(config['Foto 2']);
+        img2.style.display = 'block';
+    }
+    
+    const metaHtml = `
+        <div class="meta-item"><div class="meta-label">Nacimiento</div><div class="meta-value">${config['Nacimiento'] || ''}</div></div>
+        <div class="meta-item"><div class="meta-label">Altura</div><div class="meta-value">${config['Altura'] || ''}</div></div>
+        <div class="meta-item"><div class="meta-label">Idiomas</div><div class="meta-value">${config['Idiomas'] || ''}</div></div>
+        <div class="meta-item"><div class="meta-label">Base</div><div class="meta-value">${config['Base'] || ''}</div></div>
+    `;
+    document.getElementById('hero-meta').innerHTML = metaHtml;
+}
+
+function renderNavigation() {
+    const nav = document.getElementById('nav-menu');
+    SECTIONS.forEach(section => {
+        const link = document.createElement('a');
+        link.href = section.file;
+        link.textContent = section.name;
+        nav.appendChild(link);
+    });
+}
+
+function convertLink(link) {
+    if (!link) return '';
+    const match = link.match(/\/d\/(.*?)\//);
+    return match ? `https://drive.google.com/uc?export=view&id=${match[1]}` : link;
+}
+
+loadData();
+</script>
+
+</body>
+</html>
