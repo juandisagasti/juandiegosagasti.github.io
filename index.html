@@ -1,0 +1,1770 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Juan Diego Sagasti — Actor · Emprendedor · Deportista</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;0,6..96,800;0,6..96,900;1,6..96,400;1,6..96,700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Cinzel:wght@500;700;900&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   TOKENS — palette + type variants live here.
+   Three palettes (gold / sand / platinum), three type pairings.
+   Switch by setting data-theme / data-type on <html>.
+   ============================================================ */
+:root {
+  /* default = gold */
+  --bg-0: #0a0805;
+  --bg-1: #14110b;
+  --bg-2: #1c1810;
+  --bg-3: #2a2317;
+  --line: rgba(212,175,55,.18);
+  --line-strong: rgba(212,175,55,.35);
+  --ink: #f6f1e4;
+  --ink-dim: #b9b1a0;
+  --ink-mute: #7a7466;
+  --accent: #d4af37;
+  --accent-warm: #e8c870;
+  --accent-deep: #8a6f1f;
+  --grain: .035;
+
+  --font-display: "Bodoni Moda", "Cormorant Garamond", serif;
+  --font-body: "Manrope", -apple-system, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --display-weight: 800;
+  --display-tracking: -0.02em;
+
+  --container: 1440px;
+  --pad: clamp(20px, 4vw, 80px);
+}
+
+html[data-theme="sand"] {
+  --bg-0: #0e0a06;
+  --bg-1: #1a140d;
+  --bg-2: #251c12;
+  --bg-3: #322516;
+  --line: rgba(232,194,138,.18);
+  --line-strong: rgba(232,194,138,.38);
+  --ink: #f6ecd9;
+  --ink-dim: #c4b59a;
+  --ink-mute: #847663;
+  --accent: #e8c28a;
+  --accent-warm: #f0d7a8;
+  --accent-deep: #9a7a44;
+}
+
+html[data-theme="platinum"] {
+  --bg-0: #07080a;
+  --bg-1: #0e1014;
+  --bg-2: #14171c;
+  --bg-3: #1d2128;
+  --line: rgba(220,225,235,.10);
+  --line-strong: rgba(220,225,235,.22);
+  --ink: #eef0f4;
+  --ink-dim: #a8adb8;
+  --ink-mute: #6c7079;
+  --accent: #c8ccd4;
+  --accent-warm: #e0e3e9;
+  --accent-deep: #6b6f78;
+}
+
+html[data-type="cormorant"] {
+  --font-display: "Cormorant Garamond", serif;
+  --display-weight: 700;
+  --display-tracking: -0.01em;
+}
+html[data-type="cinzel"] {
+  --font-display: "Cinzel", serif;
+  --display-weight: 700;
+  --display-tracking: 0.04em;
+}
+
+/* ============================================================
+   RESET / BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { background: var(--bg-0); }
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--bg-0);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* film grain overlay */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: var(--grain);
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .8 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* warm vignette */
+body::after {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,.45) 100%);
+}
+
+::selection { background: var(--accent); color: var(--bg-0); }
+
+img { display: block; max-width: 100%; }
+
+h1, h2, h3, h4 { margin: 0; font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); line-height: .95; }
+p { margin: 0; }
+
+a { color: inherit; text-decoration: none; }
+
+.container { max-width: var(--container); margin: 0 auto; padding: 0 var(--pad); }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.eyebrow .num { color: var(--ink-mute); margin-right: .8em; }
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px var(--pad);
+  display: flex; align-items: center; justify-content: space-between;
+  transition: background .4s ease, backdrop-filter .4s ease, padding .4s ease;
+}
+.nav.scrolled {
+  background: rgba(10,8,5,.72);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  padding: 14px var(--pad);
+  border-bottom: 1px solid var(--line);
+}
+.nav__brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: .02em;
+  font-size: 17px;
+  display: flex; align-items: baseline; gap: 10px;
+}
+.nav__brand .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); display: inline-block; transform: translateY(-3px); }
+.nav__links { display: flex; gap: 34px; align-items: center; }
+.nav__link {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  position: relative;
+  padding: 6px 0;
+  transition: color .3s ease;
+}
+.nav__link:hover { color: var(--ink); }
+.nav__link::after {
+  content: "";
+  position: absolute; left: 0; bottom: 0;
+  height: 1px; width: 0;
+  background: var(--accent);
+  transition: width .4s cubic-bezier(.7,0,.2,1);
+}
+.nav__link:hover::after { width: 100%; }
+.nav__cta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--bg-0);
+  background: var(--accent);
+  padding: 10px 16px;
+  border-radius: 999px;
+  transition: background .3s ease, transform .3s ease;
+}
+.nav__cta:hover { background: var(--accent-warm); transform: translateY(-1px); }
+.nav__burger { display: none; }
+
+@media (max-width: 880px) {
+  .nav__links { display: none; }
+  .nav__burger {
+    display: flex; flex-direction: column; gap: 5px;
+    background: transparent; border: 0; cursor: pointer; padding: 8px;
+  }
+  .nav__burger span { width: 22px; height: 1.5px; background: var(--ink); display: block; }
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+
+.hero__media {
+  position: absolute; inset: 0;
+  z-index: 0;
+  background-image: url('images/hero.jpg');
+  background-size: cover;
+  background-position: center 25%;
+  transform: scale(1.04);
+  animation: heroDrift 22s ease-in-out infinite alternate;
+}
+@keyframes heroDrift {
+  from { transform: scale(1.04) translateY(0); }
+  to   { transform: scale(1.07) translateY(-1%); }
+}
+.hero__media::after {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(10,8,5,0) 0%, rgba(10,8,5,0) 35%, rgba(10,8,5,.55) 60%, rgba(10,8,5,.95) 100%),
+    linear-gradient(90deg, rgba(10,8,5,.4) 0%, transparent 50%);
+}
+.hero__media .ph {
+  width: 100%; height: 100%;
+  background:
+    repeating-linear-gradient(135deg, rgba(255,255,255,.022) 0 2px, transparent 2px 14px),
+    linear-gradient(135deg, #1a1610, #2a2217 60%, #1a1610);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink-mute);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.hero__inner {
+  position: relative; z-index: 2;
+  flex: 1;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: clamp(280px, 52vh, 600px) var(--pad) 60px;
+}
+
+.hero__overline {
+  display: flex; align-items: center; gap: 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.hero__overline .bar { width: 40px; height: 1px; background: var(--accent); }
+
+.hero__title {
+  margin-top: 24px;
+  font-size: clamp(64px, 13vw, 220px);
+  line-height: .88;
+  font-style: italic;
+  letter-spacing: -0.025em;
+}
+.hero__title .ln { display: block; overflow: hidden; }
+.hero__title .ln span {
+  display: inline-block;
+  transform: translateY(110%);
+  animation: rise 1.1s cubic-bezier(.2,.8,.2,1) forwards;
+}
+.hero__title .ln:nth-child(2) span { animation-delay: .12s; }
+@keyframes rise { to { transform: translateY(0); } }
+
+.hero__sub {
+  margin-top: 28px;
+  display: flex; flex-wrap: wrap; gap: 28px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  opacity: 0; animation: fadeUp 1s .6s forwards;
+}
+.hero__sub b { color: var(--accent); font-weight: 500; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+.hero__foot {
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+  gap: 40px;
+  padding-top: 60px;
+  border-top: 1px solid var(--line);
+  opacity: 0; animation: fadeUp 1s .9s forwards;
+}
+.hero__foot .blurb { max-width: 380px; font-size: 14px; line-height: 1.6; color: var(--ink-dim); }
+.hero__foot .blurb b { color: var(--ink); font-weight: 600; }
+.hero__scroll {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.hero__scroll .line {
+  width: 1px; height: 50px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  position: relative;
+  overflow: hidden;
+}
+.hero__scroll .line::after {
+  content: "";
+  position: absolute; top: -50%; left: 0;
+  width: 1px; height: 50%;
+  background: var(--ink);
+  animation: scrollPing 2.4s ease-in-out infinite;
+}
+@keyframes scrollPing { 0% { top: -50%; } 100% { top: 100%; } }
+
+.hero__meta {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  line-height: 1.8;
+}
+.hero__meta b { color: var(--ink-dim); font-weight: 500; }
+
+/* HERO VARIANT: split */
+html[data-hero="split"] .hero__inner {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr auto;
+  gap: 0 60px;
+  padding-top: 160px;
+}
+html[data-hero="split"] .hero__media { right: 50%; }
+html[data-hero="split"] .hero__media::after {
+  background: linear-gradient(90deg, rgba(10,8,5,.55) 0%, rgba(10,8,5,.85) 100%);
+}
+html[data-hero="split"] .hero__overline { grid-column: 1; }
+html[data-hero="split"] .hero__title { grid-column: 1 / -1; font-size: clamp(56px, 10vw, 160px); }
+html[data-hero="split"] .hero__sub,
+html[data-hero="split"] .hero__foot { grid-column: 1 / -1; }
+@media (max-width: 880px) {
+  html[data-hero="split"] .hero__inner { grid-template-columns: 1fr; }
+  html[data-hero="split"] .hero__media { right: 0; }
+}
+
+/* HERO VARIANT: type-dominant */
+html[data-hero="type"] .hero__media { opacity: .35; }
+html[data-hero="type"] .hero__media::after {
+  background: linear-gradient(180deg, rgba(10,8,5,.85), rgba(10,8,5,.95));
+}
+html[data-hero="type"] .hero__title {
+  font-size: clamp(80px, 18vw, 320px);
+  font-style: normal;
+}
+
+/* ============================================================
+   SECTION CHROME
+   ============================================================ */
+.section {
+  position: relative;
+  padding: clamp(80px, 14vh, 160px) 0;
+  border-top: 1px solid var(--line);
+}
+.section__head {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 60px;
+  margin-bottom: clamp(40px, 6vh, 80px);
+}
+.section__head .left { display: flex; flex-direction: column; gap: 18px; position: sticky; top: 100px; align-self: start; }
+.section__head h2 {
+  font-size: clamp(40px, 6vw, 88px);
+  line-height: .96;
+}
+.section__head h2 em { font-style: italic; color: var(--accent); }
+.section__head .lede {
+  font-size: clamp(16px, 1.4vw, 19px);
+  line-height: 1.5;
+  color: var(--ink-dim);
+  max-width: 56ch;
+}
+.section__head .lede b { color: var(--ink); font-weight: 600; }
+@media (max-width: 880px) {
+  .section__head { grid-template-columns: 1fr; gap: 24px; }
+  .section__head .left { position: static; }
+}
+
+/* ============================================================
+   SOBRE MÍ
+   ============================================================ */
+.about {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.about__portrait {
+  aspect-ratio: 4/5;
+  position: relative;
+  background: var(--bg-2);
+  overflow: hidden;
+}
+.about__portrait .ph { width: 100%; height: 100%; }
+.about__portrait::after {
+  content: "";
+  position: absolute; inset: 0;
+  border: 1px solid var(--line);
+  pointer-events: none;
+}
+.about__copy { display: flex; flex-direction: column; gap: 32px; }
+.about__copy .pull {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.15;
+  color: var(--ink);
+}
+.about__copy .pull em { color: var(--accent); font-style: italic; }
+.about__copy p {
+  font-size: 16px; line-height: 1.7; color: var(--ink-dim);
+}
+.about__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.about__stats > div {
+  padding: 20px 0 20px 20px;
+  border-left: 1px solid var(--line);
+}
+.about__stats > div:first-child { padding-left: 0; border-left: 0; }
+.about__stats .k {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.about__stats .v { font-size: 14px; color: var(--ink); font-weight: 500; line-height: 1.4; }
+@media (max-width: 880px) {
+  .about { grid-template-columns: 1fr; gap: 40px; }
+  .about__stats { grid-template-columns: 1fr 1fr; }
+  .about__stats > div:nth-child(3) { border-left: 0; padding-left: 0; }
+}
+
+.about__skills {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.about__skills .skill {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 24px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+.about__skills .skill:last-child { border-bottom: 0; }
+.about__skills .k {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.about__skills .v { font-size: 14px; color: var(--ink-dim); line-height: 1.5; }
+@media (max-width: 880px) {
+  .about__skills .skill { grid-template-columns: 1fr; gap: 6px; }
+}
+
+/* ============================================================
+   REEL
+   ============================================================ */
+.reel { position: relative; }
+.reel__frame {
+  position: relative;
+  aspect-ratio: 16/9;
+  background: #000;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.reel__frame .ph,
+.reel__poster {
+  width: 100%; height: 100%;
+  background:
+    radial-gradient(ellipse at center, rgba(212,175,55,.18), transparent 70%),
+    linear-gradient(180deg, #0e0a06 0%, #1a1610 50%, #0e0a06 100%);
+  display: flex; align-items: center; justify-content: center;
+}
+.reel__poster {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  z-index: 1;
+}
+.reel__poster::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(10,8,5,.35) 0%, rgba(10,8,5,.15) 40%, rgba(10,8,5,.85) 100%),
+    linear-gradient(90deg, rgba(10,8,5,.4) 0%, transparent 50%);
+}
+.reel__poster .reel__playbtn { position: relative; z-index: 2; }
+.reel__frame iframe {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border: 0;
+  z-index: 3;
+}
+.reel__playbtn {
+  width: clamp(100px, 14vw, 180px); height: clamp(100px, 14vw, 180px);
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  background: rgba(0,0,0,.3);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  transition: transform .4s ease;
+}
+.reel__playbtn:hover { transform: scale(1.06); }
+.reel__playbtn::before {
+  content: "";
+  position: absolute; inset: -1px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  animation: pulse 2.4s ease-out infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(1); opacity: .8; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+.reel__playbtn .tri {
+  width: 0; height: 0;
+  border-left: 22px solid var(--accent);
+  border-top: 14px solid transparent;
+  border-bottom: 14px solid transparent;
+  margin-left: 6px;
+}
+.reel__caption {
+  position: absolute; left: 24px; bottom: 24px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  display: flex; align-items: center; gap: 12px;
+}
+.reel__caption .rec { width: 8px; height: 8px; border-radius: 50%; background: #e64545; box-shadow: 0 0 12px #e64545; animation: blink 1.6s ease-in-out infinite; }
+@keyframes blink { 50% { opacity: .3; } }
+.reel__timecode {
+  position: absolute; right: 24px; top: 24px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .15em;
+  color: var(--ink-mute);
+}
+
+.reel__ctas {
+  margin-top: 32px;
+  display: flex; gap: 14px; flex-wrap: wrap;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 16px 26px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all .35s cubic-bezier(.4,0,.2,1);
+  position: relative;
+  overflow: hidden;
+}
+.btn::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: var(--accent);
+  transform: translateY(101%);
+  transition: transform .4s cubic-bezier(.4,0,.2,1);
+  z-index: -1;
+}
+.btn:hover { color: var(--bg-0); border-color: var(--accent); }
+.btn:hover::before { transform: translateY(0); }
+.btn--primary { background: var(--accent); color: var(--bg-0); border-color: var(--accent); }
+.btn--primary::before { background: var(--accent-warm); }
+.btn--primary:hover { color: var(--bg-0); }
+.btn .arrow { font-size: 14px; }
+
+/* ============================================================
+   FOTOS (editorial grid)
+   ============================================================ */
+.fotos {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+.foto { position: relative; overflow: hidden; background: var(--bg-2); }
+.foto .ph {
+  width: 100%; height: 100%;
+  background:
+    repeating-linear-gradient(135deg, rgba(255,255,255,.025) 0 2px, transparent 2px 12px),
+    linear-gradient(135deg, var(--bg-2), var(--bg-3) 50%, var(--bg-1));
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  transition: transform 1.2s cubic-bezier(.2,.8,.2,1);
+}
+.foto:hover .ph { transform: scale(1.04); }
+.foto::after {
+  content: "";
+  position: absolute; inset: 0;
+  border: 1px solid transparent;
+  transition: border-color .4s ease;
+  pointer-events: none;
+}
+.foto:hover::after { border-color: var(--line-strong); }
+.foto__cap {
+  position: absolute; left: 12px; bottom: 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: rgba(10,8,5,.65);
+  backdrop-filter: blur(6px);
+  padding: 6px 10px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .4s ease, transform .4s ease;
+}
+.foto:hover .foto__cap { opacity: 1; transform: translateY(0); }
+
+.foto--suit       { grid-column: span 5; aspect-ratio: 2/3; }
+.foto--library    { grid-column: span 7; aspect-ratio: 3/2; }
+.foto--tee        { grid-column: span 5; aspect-ratio: 1/1; }
+.foto--surf       { grid-column: span 7; aspect-ratio: 11/10; }
+.foto--suit-bw    { grid-column: span 4; aspect-ratio: 2/3; }
+.foto--character  { grid-column: span 8; aspect-ratio: 3/2; }
+.foto--vida       { grid-column: span 4; aspect-ratio: 9/14; }
+.foto--retrato    { grid-column: span 8; aspect-ratio: 16/9; }
+
+.foto img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2,.8,.2,1); }
+.foto:hover img { transform: scale(1.04); }
+
+@media (max-width: 880px) {
+  .fotos { grid-template-columns: 1fr; }
+  .foto { grid-column: span 1 !important; aspect-ratio: 3/4 !important; }
+  .foto--library, .foto--surf, .foto--character, .foto--retrato { aspect-ratio: 3/2 !important; }
+}
+
+/* ============================================================
+   FILMOGRAFÍA (Teatro / TV)
+   ============================================================ */
+.film {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+.film__col h3 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(28px, 3vw, 40px);
+  margin-bottom: 28px;
+  display: flex; align-items: baseline; gap: 16px;
+}
+.film__col h3 .count {
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: .25em;
+  color: var(--accent);
+  font-weight: 400;
+}
+.film__list { display: flex; flex-direction: column; }
+.film__item {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: 20px;
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
+  align-items: baseline;
+  cursor: pointer;
+  position: relative;
+  transition: padding .4s cubic-bezier(.4,0,.2,1);
+}
+.film__item:last-child { border-bottom: 1px solid var(--line); }
+.film__item::before {
+  content: "";
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 0;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  opacity: .12;
+  transition: width .5s cubic-bezier(.4,0,.2,1);
+  z-index: -1;
+}
+.film__item:hover { padding-left: 16px; }
+.film__item:hover::before { width: 100%; }
+.film__item .year {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: .15em;
+}
+.film__item .title {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 600;
+  line-height: 1.2;
+}
+.film__item .title .role {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-mute);
+  letter-spacing: .02em;
+  margin-top: 4px;
+}
+.film__item .meta {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  text-align: right;
+}
+@media (max-width: 880px) {
+  .film { grid-template-columns: 1fr; gap: 60px; }
+  .film__item { grid-template-columns: 50px 1fr; }
+  .film__item .meta { grid-column: 2; text-align: left; margin-top: 4px; }
+}
+
+/* ============================================================
+   CRÍTICAS
+   ============================================================ */
+.quotes {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 30px 40px;
+  align-items: start;
+}
+.quote {
+  border-top: 1px solid var(--line);
+  padding-top: 26px;
+  position: relative;
+}
+.quote::before {
+  content: "“";
+  position: absolute; top: 4px; left: -2px;
+  font-family: var(--font-display);
+  font-size: 80px;
+  line-height: 1;
+  color: var(--accent);
+  opacity: .35;
+}
+.quote p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(20px, 1.8vw, 26px);
+  line-height: 1.3;
+  color: var(--ink);
+  padding-left: 30px;
+}
+.quote p em { color: var(--accent); font-style: italic; }
+.quote .src {
+  margin-top: 18px;
+  padding-left: 30px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.quote .src b { color: var(--ink-dim); font-weight: 500; }
+.quote--a { grid-column: span 7; }
+.quote--b { grid-column: span 5; margin-top: 60px; }
+.quote--c { grid-column: span 5; }
+.quote--d { grid-column: span 7; margin-top: 40px; }
+@media (max-width: 880px) {
+  .quote { grid-column: span 12 !important; margin-top: 0 !important; }
+}
+
+/* ============================================================
+   DEPORTES
+   ============================================================ */
+.sports {
+  position: relative;
+}
+.sports__hero {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: var(--bg-2);
+}
+.sports__hero img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: 65% 60%;
+}
+.sports__hero::after {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(7,8,10,.2) 0%, rgba(7,8,10,.1) 50%, rgba(7,8,10,.85) 100%),
+    linear-gradient(90deg, rgba(7,8,10,.3) 0%, transparent 30%, transparent 70%, rgba(7,8,10,.3) 100%);
+  pointer-events: none;
+}
+.sports__list {
+  margin-top: -120px;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  background: var(--bg-0);
+  padding: 30px 40px;
+  border: 1px solid var(--line);
+}
+.sports__item {
+  text-align: center;
+  padding: 24px 12px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  cursor: default;
+}
+.sports__item:nth-child(5n) { border-right: 0; }
+.sports__item:nth-last-child(-n+5) { border-bottom: 0; }
+.sports__item .num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .25em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 14px;
+}
+.sports__item .name {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 1.8vw, 28px);
+  font-weight: 700;
+  font-style: italic;
+}
+@media (max-width: 880px) {
+  .sports__list { grid-template-columns: 1fr 1fr; padding: 16px; margin-top: -60px; }
+  .sports__item { padding: 20px 8px; }
+  .sports__item:nth-child(5n) { border-right: 1px solid var(--line); }
+  .sports__item:nth-last-child(-n+5) { border-bottom: 1px solid var(--line); }
+  .sports__item:nth-child(2n) { border-right: 0; }
+  .sports__item:nth-last-child(-n+2) { border-bottom: 0; }
+}
+
+/* ============================================================
+   EMPRENDIMIENTOS
+   ============================================================ */
+.ventures {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+.venture {
+  border: 1px solid var(--line);
+  padding: 30px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 24px;
+  background: linear-gradient(180deg, var(--bg-1), var(--bg-0));
+  position: relative;
+  overflow: hidden;
+  transition: border-color .4s ease, transform .4s ease;
+}
+.venture:hover { border-color: var(--line-strong); transform: translateY(-4px); }
+.venture::after {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  transform: translateX(-100%);
+  transition: transform .8s cubic-bezier(.4,0,.2,1);
+}
+.venture:hover::after { transform: translateX(100%); }
+.venture__head { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
+.venture__logo {
+  width: 60px; height: 60px;
+  border: 1px solid var(--line-strong);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  font-style: italic;
+  color: var(--accent);
+}
+.venture__tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  border: 1px solid var(--line);
+  padding: 6px 10px;
+}
+.venture h4 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 2.4vw, 32px);
+  font-weight: 700;
+  line-height: 1.05;
+}
+.venture p { color: var(--ink-dim); font-size: 14px; line-height: 1.6; }
+.venture__cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.venture__cta .arr { transition: transform .35s ease; }
+.venture:hover .venture__cta .arr { transform: translateX(6px); }
+@media (max-width: 880px) {
+  .ventures { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   CONTACTO / FOOTER
+   ============================================================ */
+.contact {
+  padding: clamp(80px, 14vh, 160px) 0 60px;
+  border-top: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--bg-0), #050402);
+}
+.contact__top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+  margin-bottom: 80px;
+}
+.contact__title {
+  font-size: clamp(48px, 8vw, 140px);
+  line-height: .9;
+  font-style: italic;
+}
+.contact__title em { color: var(--accent); }
+.contact__links { display: flex; flex-direction: column; gap: 20px; }
+.contact__link {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 24px;
+  align-items: baseline;
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(22px, 2.2vw, 32px);
+  font-weight: 600;
+  transition: color .3s ease, padding .4s ease;
+  position: relative;
+}
+.contact__link:last-child { border-bottom: 1px solid var(--line); }
+.contact__link .label {
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 10px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 400;
+}
+.contact__link .arr { color: var(--accent); transition: transform .4s ease; }
+.contact__link:hover { color: var(--accent); padding-left: 12px; }
+.contact__link:hover .arr { transform: translate(6px, -6px); }
+
+.contact__foot {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.contact__foot a:hover { color: var(--accent); }
+.contact__foot .social { display: flex; gap: 24px; }
+
+@media (max-width: 880px) {
+  .contact__top { grid-template-columns: 1fr; gap: 40px; }
+  .contact__foot { flex-direction: column; gap: 20px; }
+}
+
+/* ============================================================
+   REVEAL ANIMATIONS (intersection observer)
+   ============================================================ */
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 1s cubic-bezier(.2,.8,.2,1), transform 1s cubic-bezier(.2,.8,.2,1); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal-stagger > * { opacity: 0; transform: translateY(40px); transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1); }
+.reveal-stagger.in > * { opacity: 1; transform: translateY(0); }
+.reveal-stagger.in > *:nth-child(2) { transition-delay: .08s; }
+.reveal-stagger.in > *:nth-child(3) { transition-delay: .16s; }
+.reveal-stagger.in > *:nth-child(4) { transition-delay: .24s; }
+.reveal-stagger.in > *:nth-child(5) { transition-delay: .32s; }
+.reveal-stagger.in > *:nth-child(6) { transition-delay: .40s; }
+.reveal-stagger.in > *:nth-child(7) { transition-delay: .48s; }
+
+.curtain { position: relative; overflow: hidden; }
+.curtain::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: var(--bg-0);
+  transform-origin: right;
+  transform: scaleX(1);
+  transition: transform 1.2s cubic-bezier(.7,0,.2,1);
+  z-index: 3;
+}
+.curtain.in::before { transform: scaleX(0); }
+
+/* ============================================================
+   TWEAKS PANEL
+   ============================================================ */
+.tweaks {
+  position: fixed;
+  right: 20px; bottom: 20px;
+  z-index: 1000;
+  background: rgba(14,11,7,.92);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--line-strong);
+  width: 280px;
+  font-family: var(--font-mono);
+  color: var(--ink);
+  display: none;
+  box-shadow: 0 30px 80px rgba(0,0,0,.5);
+}
+.tweaks.open { display: block; }
+.tweaks__head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  font-size: 10px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.tweaks__head button {
+  background: transparent; border: 0; color: var(--ink-mute);
+  font-family: var(--font-mono); font-size: 16px;
+  cursor: pointer; padding: 0 4px;
+  transition: color .2s;
+}
+.tweaks__head button:hover { color: var(--ink); }
+.tweaks__body { padding: 18px; display: flex; flex-direction: column; gap: 18px; }
+.tweaks__row { display: flex; flex-direction: column; gap: 8px; }
+.tweaks__label { font-size: 9px; letter-spacing: .25em; text-transform: uppercase; color: var(--ink-mute); }
+.tweaks__opts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.tweaks__opt {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink-dim);
+  padding: 10px 8px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .25s;
+}
+.tweaks__opt:hover { color: var(--ink); border-color: var(--line-strong); }
+.tweaks__opt.active { background: var(--accent); color: var(--bg-0); border-color: var(--accent); }
+.tweaks__swatch { width: 100%; height: 22px; display: block; margin-bottom: 6px; }
+.tweaks__opt-color { flex-direction: column; display: flex; align-items: stretch; padding: 8px; }
+
+/* ============================================================
+   PRINT-FRIENDLY (hide overlays)
+   ============================================================ */
+@media print {
+  body::before, body::after, .nav, .tweaks { display: none !important; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav class="nav" id="nav">
+  <a href="#top" class="nav__brand">JDS<span class="dot"></span></a>
+  <div class="nav__links">
+    <a href="#sobre" class="nav__link">Sobre</a>
+    <a href="#reel" class="nav__link">Reel</a>
+    <a href="#fotos" class="nav__link">Fotos</a>
+    <a href="#filmografia" class="nav__link">Filmografía</a>
+    <a href="#deportes" class="nav__link">Deportes</a>
+  </div>
+  <a href="#contacto" class="nav__cta">Contacto</a>
+  <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<header class="hero" id="top">
+  <div class="hero__media" role="img" aria-label="Juan Diego Sagasti — film still"></div>
+
+  <div class="hero__inner">
+    <div class="hero__overline">
+      <span class="bar"></span>
+      <span>Buenos Aires · Punta del Este</span>
+    </div>
+
+    <h1 class="hero__title">
+      <span class="ln"><span>Juan Diego</span></span>
+      <span class="ln"><span>Sagasti</span></span>
+    </h1>
+
+    <div class="hero__sub">
+      <span><b>01</b> &nbsp; Actor</span>
+      <span><b>02</b> &nbsp; Emprendedor</span>
+      <span><b>03</b> &nbsp; Deportista</span>
+    </div>
+
+    <div class="hero__foot">
+      <p class="blurb">
+        Actor formado en Buenos Aires, con base entre <b>Argentina y Uruguay</b>. Nueve obras de teatro, una miniserie protagónica, cédula uruguaya y la sal del mar siempre cerca.
+      </p>
+      <div class="hero__scroll">
+        <span>Scroll</span>
+        <span class="line"></span>
+      </div>
+      <div class="hero__meta">
+        <div><b>26 · 08 · 1995</b></div>
+        <div><b>1.80 m</b></div>
+        <div><b>ES · EN · PT</b></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     SOBRE MÍ
+     ============================================================ -->
+<section class="section" id="sobre">
+  <div class="container">
+    <div class="section__head reveal">
+      <div class="left">
+        <div class="eyebrow"><span class="num">01 /</span>Sobre mí</div>
+        <h2>El oficio<br/><em>antes que todo.</em></h2>
+      </div>
+      <p class="lede">
+        Empecé en el teatro casi por accidente y nunca más me bajé del escenario. Hoy reparto el tiempo entre rodajes, temporadas teatrales, proyectos propios y el agua — porque el mar, para mí, es donde la actuación descansa y al mismo tiempo se afila.
+      </p>
+    </div>
+
+    <div class="about reveal">
+      <div class="about__portrait curtain">
+        <img src="images/portrait.jpg" alt="Juan Diego Sagasti — retrato" style="width:100%;height:100%;object-fit:cover;object-position:center 20%" />
+      </div>
+
+      <div class="about__copy">
+        <p class="pull">
+          Vivo de esto desde 2018 y no volví a hacer otra cosa. Lo que me sigue moviendo es lo mismo del primer día: <em>la verdad de un momento en escena.</em>
+        </p>
+        <p>
+          Me formé con <b>Ezequiel Sagasti</b> en <em>Teatro Consciente</em> (2018–2022), y actualmente sigo entrenando con <b>Indio Romero</b> y <b>Helena Tritek</b> — tres escuelas distintas, una misma búsqueda. En estos años hice más de diez obras entre Argentina y Uruguay, con una temporada larga dedicada a Shakespeare en Punta del Este.
+        </p>
+        <p>
+          En audiovisual vengo de protagonizar la miniserie <em>Sangre en el lienzo</em>, sumar un secundario en <em>Nene Revancha</em> (Gonzalo Demaría) y coprotagonizar el documental <em>Borges</em>, a estrenarse. Tengo <b>cédula uruguaya vigente</b> y base en Buenos Aires, Punta del Este y Montevideo.
+        </p>
+
+        <div class="about__stats">
+          <div><div class="k">Nacimiento</div><div class="v">26 · 08 · 1995</div></div>
+          <div><div class="k">Altura</div><div class="v">1.80 m</div></div>
+          <div><div class="k">Idiomas</div><div class="v">ES · EN (Bilingüe) · PT</div></div>
+          <div><div class="k">Base</div><div class="v">BA · PdE · MVD</div></div>
+        </div>
+
+        <div class="about__skills">
+          <div class="skill">
+            <div class="k">Instrumentos</div>
+            <div class="v">Guitarra, batería, djembe · Canto</div>
+          </div>
+          <div class="skill">
+            <div class="k">Habilidades</div>
+            <div class="v">Equitación · Pintura · Esgrima escénica</div>
+          </div>
+          <div class="skill">
+            <div class="k">Licencia</div>
+            <div class="v">Moto · auto · utilitarios · camionetas · casa rodante (hasta 3500 kg)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     REEL
+     ============================================================ -->
+<section class="section reel" id="reel">
+  <div class="container">
+    <div class="section__head reveal">
+      <div class="left">
+        <div class="eyebrow"><span class="num">02 /</span>Audiovisual</div>
+        <h2>Reel<br/><em>2026.</em></h2>
+      </div>
+      <p class="lede">
+        Una selección de 75 segundos con escenas de mis últimos trabajos para cine, plataformas y publicidad. <b>Descargá el CV o escribime</b> para acceder al reel extendido y a material en bruto por casting específico.
+      </p>
+    </div>
+
+    <div class="reel__frame curtain reveal" id="reel-frame" data-video="w_KOEho07-o">
+      <div class="reel__poster" style="background-image:url('https://img.youtube.com/vi/w_KOEho07-o/maxresdefault.jpg')">
+        <button class="reel__playbtn" aria-label="Reproducir reel"><span class="tri"></span></button>
+      </div>
+      <div class="reel__caption">
+        <span class="rec"></span>
+        <span>JDS · Reel Audiovisual · 01:15</span>
+      </div>
+      <div class="reel__timecode">00:00 / 01:15</div>
+    </div>
+
+    <div class="reel__ctas reveal">
+      <a class="btn btn--primary" href="cv/Juan Diego Sagasti - CV.pdf" download>
+        <span>Descargar CV</span><span class="arrow">↓</span>
+      </a>
+      <a class="btn" href="mailto:juandiegosagasti@gmail.com">
+        <span>Enviar mail</span><span class="arrow">→</span>
+      </a>
+      <a class="btn" href="https://wa.me/5491151341589" target="_blank" rel="noopener">
+        <span>WhatsApp</span><span class="arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOTOS
+     ============================================================ -->
+<section class="section" id="fotos">
+  <div class="container">
+    <div class="section__head reveal">
+      <div class="left">
+        <div class="eyebrow"><span class="num">03 /</span>Fotos</div>
+        <h2>Imagen<br/><em>&amp; book.</em></h2>
+      </div>
+      <p class="lede">
+        Material reciente de book actoral y editorial. Disponible para envío en alta resolución — escribime con la referencia de la foto para recibirla.
+      </p>
+    </div>
+
+    <div class="fotos reveal-stagger">
+      <figure class="foto foto--suit">
+        <img src="images/foto-suit.jpg" alt="Editorial — traje y palmeras" />
+        <figcaption class="foto__cap">Editorial · traje</figcaption>
+      </figure>
+      <figure class="foto foto--library">
+        <img src="images/foto-library-bw.jpg" alt="Editorial b/n biblioteca" />
+        <figcaption class="foto__cap">Editorial · biblioteca</figcaption>
+      </figure>
+
+      <figure class="foto foto--tee">
+        <img src="images/foto-tee-golden.jpg" alt="Retrato golden hour" />
+        <figcaption class="foto__cap">Retrato · golden hour</figcaption>
+      </figure>
+      <figure class="foto foto--surf">
+        <img src="images/foto-surf-action.jpg" alt="Surf en acción" />
+        <figcaption class="foto__cap">Surf · acción</figcaption>
+      </figure>
+
+      <figure class="foto foto--suit-bw">
+        <img src="images/foto-suit-bw.jpg" alt="Editorial — traje b/n perfil" />
+        <figcaption class="foto__cap">Editorial · b/n</figcaption>
+      </figure>
+      <figure class="foto foto--character">
+        <img src="images/foto-character.jpg" alt="Composición de personaje" />
+        <figcaption class="foto__cap">Personaje · en acción</figcaption>
+      </figure>
+
+      <figure class="foto foto--vida">
+        <img src="images/foto-vida.jpg" alt="Vida en la costa" />
+        <figcaption class="foto__cap">Costa · ruta</figcaption>
+      </figure>
+      <figure class="foto foto--retrato">
+        <img src="images/portrait.jpg" alt="Retrato estudio" style="object-position:center 30%" />
+        <figcaption class="foto__cap">Retrato · estudio</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FILMOGRAFÍA (Teatro & TV)
+     ============================================================ -->
+<section class="section" id="filmografia">
+  <div class="container">
+    <div class="section__head reveal">
+      <div class="left">
+        <div class="eyebrow"><span class="num">04 /</span>Filmografía</div>
+        <h2>Teatro<br/><em>&amp; pantalla.</em></h2>
+      </div>
+      <p class="lede">
+        Trabajos seleccionados desde 2019. Para la lista completa con créditos y enlaces de prensa, <b>descargá el CV</b>.
+      </p>
+    </div>
+
+    <div class="film reveal">
+      <div class="film__col">
+        <h3>Teatro <span class="count">— 12 obras</span></h3>
+        <div class="film__list">
+          <a class="film__item">
+            <span class="year">01</span>
+            <span class="title">Shakespeare y el mar <span class="role">unipersonal · Próspero, Hamlet, Oberón, Pericles, Duque Orsino, Clarence, El Tiempo, Capitán</span></span>
+            <span class="meta">Uruguay · W. Shakespeare</span>
+          </a>
+          <a class="film__item">
+            <span class="year">02</span>
+            <span class="title">Como gustes <span class="role">como Orlando · protagonista</span></span>
+            <span class="meta">Uruguay · W. Shakespeare</span>
+          </a>
+          <a class="film__item">
+            <span class="year">03</span>
+            <span class="title">Mucho ruido y pocas nueces <span class="role">como Conde Claudio · coprotagonista</span></span>
+            <span class="meta">Uruguay · W. Shakespeare</span>
+          </a>
+          <a class="film__item">
+            <span class="year">04</span>
+            <span class="title">Sueño de una noche de verano <span class="role">Demetrio · Quincy · Hado · dos temporadas</span></span>
+            <span class="meta">Uruguay · W. Shakespeare</span>
+          </a>
+          <a class="film__item">
+            <span class="year">05</span>
+            <span class="title">Fragmentos del tiempo y el amor <span class="role">Ricardo III · Romeo · Duque Orsino · Claudio · Demetrio</span></span>
+            <span class="meta">Uruguay · W. Shakespeare</span>
+          </a>
+          <a class="film__item">
+            <span class="year">06</span>
+            <span class="title">Fragmentos del tiempo y el amor <span class="role">composición · Museo Ralli &amp; Arboretum Lussich</span></span>
+            <span class="meta">Uruguay · M. Benedetti</span>
+          </a>
+          <a class="film__item">
+            <span class="year">07</span>
+            <span class="title">Cacería <span class="role">composición de personaje · galería artística</span></span>
+            <span class="meta">Gonzalo Demaría</span>
+          </a>
+          <a class="film__item">
+            <span class="year">08</span>
+            <span class="title">Recordando a Borges <span class="role">Biblioteca Miguel Cané</span></span>
+            <span class="meta">dir. Helena Tritek</span>
+          </a>
+          <a class="film__item">
+            <span class="year">09</span>
+            <span class="title">Hijos de la muerte <span class="role">como El Vasco · temporadas I &amp; II</span></span>
+            <span class="meta">Teatro NÜN · E. Sagasti</span>
+          </a>
+          <a class="film__item">
+            <span class="year">10</span>
+            <span class="title">Psicosis, la mente de un asesino <span class="role">protagonista</span></span>
+            <span class="meta">Teatro BA · P. Ocanto</span>
+          </a>
+          <a class="film__item">
+            <span class="year">11</span>
+            <span class="title">Encargado con vivienda <span class="role">protagonista</span></span>
+            <span class="meta">CC Sábato · C. Losardo</span>
+          </a>
+          <a class="film__item">
+            <span class="year">12</span>
+            <span class="title">Carne humana <span class="role">protagónico</span></span>
+            <span class="meta">CC Bencich · J. Cantafio</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="film__col">
+        <h3>Audiovisual <span class="count">— 06 títulos</span></h3>
+        <div class="film__list">
+          <a class="film__item">
+            <span class="year">01</span>
+            <span class="title">Borges <span class="role">documental · coprotagonista · a estrenar</span></span>
+            <span class="meta">Uruguay</span>
+          </a>
+          <a class="film__item">
+            <span class="year">02</span>
+            <span class="title">Nene Revancha <span class="role">largometraje · rol secundario</span></span>
+            <span class="meta">dir. Gonzalo Demaría</span>
+          </a>
+          <a class="film__item">
+            <span class="year">03</span>
+            <span class="title">Sangre en el lienzo <span class="role">miniserie · protagonista</span></span>
+            <span class="meta">Ficción</span>
+          </a>
+          <a class="film__item">
+            <span class="year">04</span>
+            <span class="title">Vestigios <span class="role">cortometraje · protagonista</span></span>
+            <span class="meta">Cortometraje</span>
+          </a>
+          <a class="film__item">
+            <span class="year">05</span>
+            <span class="title">Érase una vez <span class="role">cortometraje · protagonista</span></span>
+            <span class="meta">Cortometraje</span>
+          </a>
+          <a class="film__item">
+            <span class="year">06</span>
+            <span class="title">El punto cúlmine <span class="role">cortometraje · coprotagonista</span></span>
+            <span class="meta">Cortometraje</span>
+          </a>
+        </div>
+
+        <h3 style="margin-top: 60px;">Formación <span class="count">— actual</span></h3>
+        <div class="film__list">
+          <a class="film__item">
+            <span class="year">∞</span>
+            <span class="title">Indio Romero <span class="role">entrenamiento actoral · 2022 — actualidad</span></span>
+            <span class="meta">Buenos Aires</span>
+          </a>
+          <a class="film__item">
+            <span class="year">∞</span>
+            <span class="title">Helena Tritek <span class="role">entrenamiento actoral · 2023 — actualidad</span></span>
+            <span class="meta">Buenos Aires</span>
+          </a>
+          <a class="film__item">
+            <span class="year">18→22</span>
+            <span class="title">Teatro Consciente <span class="role">formación con Ezequiel Sagasti</span></span>
+            <span class="meta">Escuela · 4 años</span>
+          </a>
+          <a class="film__item">
+            <span class="year">+</span>
+            <span class="title">Seminarios <span class="role">N. Angeleri · F. Limonoff · N. Monteferrario · E. Leving</span></span>
+            <span class="meta">Cámara</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CRÍTICAS — Comentada hasta tener citas reales con medio + autor + link.
+     Cuando tengas las críticas, descomentar este bloque y reactivar el link
+     en la navegación superior.
+     ============================================================ -->
+<!--
+<section class="section" id="criticas">
+  <div class="container">
+    <div class="section__head reveal">
+      <div class="left">
+        <div class="eyebrow"><span class="num">05 /</span>Críticas</div>
+        <h2>Qué dice<br/><em>la prensa.</em></h2>
+      </div>
+      <p class="lede">Selección de menciones recientes.</p>
+    </div>
+    <div class="quotes reveal-stagger">
+      <figure class="quote quote--a">
+        <p>[ TEXTO DE LA CRÍTICA — una sola frase corta, evocadora ]</p>
+        <figcaption class="src"><b>[ Medio ]</b> · [ Autor/a ] · [ Año ]</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+-->
+
+<!-- ============================================================
+     DEPORTES
+     ============================================================ -->
+<section class="section sports" id="deportes">
+  <div class="container">
+    <div class="section__head reveal">
+      <div class="left">
+        <div class="eyebrow"><span class="num">05 /</span>Deportes</div>
+        <h2>El cuerpo<br/><em>como herramienta.</em></h2>
+      </div>
+      <p class="lede">
+        Surf, skate, kitesurf, windsurf, snowboard, boxeo, rugby, fútbol y más — me muevo cómodo en cualquier disciplina física. Disponible para producciones que requieran <b>destreza física y deportiva</b>, con experiencia particular en deportes de agua y tabla.
+      </p>
+    </div>
+
+    <div class="sports__hero reveal curtain">
+      <img src="images/foto-surf-action.jpg" alt="Juan Diego Sagasti — surf en acción" />
+    </div>
+
+    <div class="sports__list reveal-stagger">
+      <div class="sports__item"><span class="num">01</span><div class="name">Surf</div></div>
+      <div class="sports__item"><span class="num">02</span><div class="name">Kitesurf</div></div>
+      <div class="sports__item"><span class="num">03</span><div class="name">Windsurf</div></div>
+      <div class="sports__item"><span class="num">04</span><div class="name">Wakeboard</div></div>
+      <div class="sports__item"><span class="num">05</span><div class="name">Snowboard</div></div>
+      <div class="sports__item"><span class="num">06</span><div class="name">Skate</div></div>
+      <div class="sports__item"><span class="num">07</span><div class="name">Boxeo</div></div>
+      <div class="sports__item"><span class="num">08</span><div class="name">Rugby</div></div>
+      <div class="sports__item"><span class="num">09</span><div class="name">Fútbol</div></div>
+      <div class="sports__item"><span class="num">10</span><div class="name">Tenis</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     EMPRENDIMIENTOS — Comentada hasta tener los proyectos reales.
+     Cuando me mandes los emprendimientos (nombre, una línea, link)
+     descomentamos este bloque y reactivamos el link en la nav.
+     ============================================================ -->
+<!--
+<section class="section" id="ventures">
+  <div class="container">
+    <div class="section__head reveal">
+      <div class="left">
+        <div class="eyebrow"><span class="num">07 /</span>Emprendimientos</div>
+        <h2>Proyectos<br/><em>propios.</em></h2>
+      </div>
+      <p class="lede">[ tu intro ].</p>
+    </div>
+    <div class="ventures reveal-stagger">
+      <article class="venture">
+        <div class="venture__head">
+          <div class="venture__logo">X</div>
+          <span class="venture__tag">Año</span>
+        </div>
+        <div><h4>Nombre del proyecto</h4><p>[ una línea ].</p></div>
+        <a href="#" class="venture__cta">Ver sitio <span class="arr">→</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+-->
+
+<!-- ============================================================
+     CONTACTO
+     ============================================================ -->
+<footer class="contact" id="contacto">
+  <div class="container">
+    <div class="contact__top reveal">
+      <h2 class="contact__title">Hablemos<br/><em>de un proyecto.</em></h2>
+      <div class="contact__links">
+        <a class="contact__link" href="mailto:juandiegosagasti@gmail.com">
+          <span class="label">Email</span>
+          <span>juandiegosagasti@gmail.com</span>
+          <span class="arr">↗</span>
+        </a>
+        <a class="contact__link" href="https://wa.me/5491151341589" target="_blank" rel="noopener">
+          <span class="label">WhatsApp</span>
+          <span>+54 9 11 5134 1589</span>
+          <span class="arr">↗</span>
+        </a>
+        <a class="contact__link" href="https://instagram.com/juandisagasti" target="_blank" rel="noopener">
+          <span class="label">Instagram</span>
+          <span>@juandisagasti</span>
+          <span class="arr">↗</span>
+        </a>
+        <a class="contact__link" href="cv/Juan Diego Sagasti - CV.pdf" download>
+          <span class="label">CV</span>
+          <span>Descargar PDF</span>
+          <span class="arr">↓</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="contact__foot">
+      <div>© 2026 · Juan Diego Sagasti · Buenos Aires &amp; Punta del Este</div>
+      <div class="social">
+        <a href="https://instagram.com/juandisagasti" target="_blank" rel="noopener">IG</a>
+        <a href="mailto:juandiegosagasti@gmail.com">MAIL</a>
+        <a href="https://wa.me/5491151341589" target="_blank" rel="noopener">WA</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     TWEAKS PANEL — palette / hero / type
+     ============================================================ -->
+<aside class="tweaks" id="tweaks">
+  <div class="tweaks__head">
+    <span>Tweaks</span>
+    <button id="tweaks-close" aria-label="Cerrar">×</button>
+  </div>
+  <div class="tweaks__body">
+
+    <div class="tweaks__row">
+      <div class="tweaks__label">Paleta</div>
+      <div class="tweaks__opts" data-key="theme">
+        <button class="tweaks__opt tweaks__opt-color" data-val="gold">
+          <span class="tweaks__swatch" style="background:linear-gradient(135deg,#d4af37,#8a6f1f)"></span>
+          Dorado
+        </button>
+        <button class="tweaks__opt tweaks__opt-color" data-val="sand">
+          <span class="tweaks__swatch" style="background:linear-gradient(135deg,#e8c28a,#9a7a44)"></span>
+          Arena
+        </button>
+        <button class="tweaks__opt tweaks__opt-color" data-val="platinum">
+          <span class="tweaks__swatch" style="background:linear-gradient(135deg,#c8ccd4,#6b6f78)"></span>
+          Platino
+        </button>
+      </div>
+    </div>
+
+    <div class="tweaks__row">
+      <div class="tweaks__label">Hero</div>
+      <div class="tweaks__opts" data-key="hero">
+        <button class="tweaks__opt" data-val="default">Full</button>
+        <button class="tweaks__opt" data-val="split">Split</button>
+        <button class="tweaks__opt" data-val="type">Type</button>
+      </div>
+    </div>
+
+    <div class="tweaks__row">
+      <div class="tweaks__label">Tipografía display</div>
+      <div class="tweaks__opts" data-key="type">
+        <button class="tweaks__opt" data-val="bodoni" style="font-family:'Bodoni Moda',serif;font-style:italic">Bodoni</button>
+        <button class="tweaks__opt" data-val="cormorant" style="font-family:'Cormorant Garamond',serif;font-style:italic">Cormorant</button>
+        <button class="tweaks__opt" data-val="cinzel" style="font-family:'Cinzel',serif">Cinzel</button>
+      </div>
+    </div>
+
+  </div>
+</aside>
+
+<!-- ============================================================
+     TWEAK DEFAULTS — used on first load
+     ============================================================ -->
+<script>
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "theme": "platinum",
+  "hero": "default",
+  "type": "cormorant"
+}/*EDITMODE-END*/;
+</script>
+
+<script>
+/* ============================================================
+   INIT
+   ============================================================ */
+(function() {
+  const html = document.documentElement;
+
+  // Apply defaults
+  function applyTweaks(t) {
+    if (t.theme && t.theme !== "gold") html.setAttribute("data-theme", t.theme);
+    else html.removeAttribute("data-theme");
+    if (t.hero && t.hero !== "default") html.setAttribute("data-hero", t.hero);
+    else html.removeAttribute("data-hero");
+    if (t.type && t.type !== "bodoni") html.setAttribute("data-type", t.type);
+    else html.removeAttribute("data-type");
+
+    // Mark active
+    document.querySelectorAll(".tweaks__opts").forEach(grp => {
+      const key = grp.dataset.key;
+      grp.querySelectorAll(".tweaks__opt").forEach(b => {
+        b.classList.toggle("active", b.dataset.val === t[key]);
+      });
+    });
+  }
+
+  let state = Object.assign({}, TWEAK_DEFAULTS);
+  applyTweaks(state);
+
+  // Tweaks wiring
+  document.querySelectorAll(".tweaks__opts").forEach(grp => {
+    grp.addEventListener("click", e => {
+      const btn = e.target.closest(".tweaks__opt");
+      if (!btn) return;
+      const key = grp.dataset.key;
+      state[key] = btn.dataset.val;
+      applyTweaks(state);
+      try {
+        window.parent.postMessage({ type: "__edit_mode_set_keys", edits: { [key]: btn.dataset.val } }, "*");
+      } catch (e) {}
+    });
+  });
+
+  // Tweaks panel show/hide via host toolbar
+  const panel = document.getElementById("tweaks");
+  const closeBtn = document.getElementById("tweaks-close");
+
+  window.addEventListener("message", e => {
+    if (!e.data || !e.data.type) return;
+    if (e.data.type === "__activate_edit_mode") panel.classList.add("open");
+    if (e.data.type === "__deactivate_edit_mode") panel.classList.remove("open");
+  });
+  closeBtn.addEventListener("click", () => {
+    panel.classList.remove("open");
+    try { window.parent.postMessage({ type: "__edit_mode_dismissed" }, "*"); } catch (e) {}
+  });
+  try { window.parent.postMessage({ type: "__edit_mode_available" }, "*"); } catch (e) {}
+
+  /* ----- NAV scroll state ----- */
+  const nav = document.getElementById("nav");
+  const onScroll = () => {
+    if (window.scrollY > 40) nav.classList.add("scrolled");
+    else nav.classList.remove("scrolled");
+  };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  /* ----- Smooth scroll for nav links ----- */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener("click", e => {
+      const id = a.getAttribute("href");
+      if (id.length < 2) return;
+      const el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      window.scrollTo({ top: el.offsetTop - 60, behavior: "smooth" });
+    });
+  });
+
+  /* ----- Reveal on scroll ----- */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        en.target.classList.add("in");
+        io.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+
+  document.querySelectorAll(".reveal, .reveal-stagger, .curtain").forEach(el => io.observe(el));
+
+  /* ----- Reel: click-to-play YouTube ----- */
+  const reelFrame = document.getElementById("reel-frame");
+  if (reelFrame) {
+    const poster = reelFrame.querySelector(".reel__poster");
+    const videoId = reelFrame.dataset.video;
+    poster.addEventListener("click", () => {
+      const iframe = document.createElement("iframe");
+      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+      iframe.allow = "autoplay; encrypted-media; fullscreen; picture-in-picture";
+      iframe.allowFullscreen = true;
+      iframe.title = "Reel audiovisual";
+      reelFrame.appendChild(iframe);
+      poster.style.opacity = "0";
+      poster.style.transition = "opacity .4s ease";
+      setTimeout(() => poster.remove(), 400);
+    });
+  }
+
+})();
+</script>
+
+</body>
+</html>
